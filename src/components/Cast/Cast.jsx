@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moviesApi from '../../services/movies-api';
-
+import styles from './Cast.module.scss';
 class Cast extends Component {
     state = {
         cast: [],
@@ -30,13 +30,13 @@ class Cast extends Component {
         return (
             (
                 cast && 
-                    <ul>
+                    <ul className={styles.CastList}>
                         {
                             cast.map(({ id, character, original_name, profile_path}) => (
-                                <li key={id}>
-                                    <img src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={original_name} />
-                                    <p>Name: {original_name}</p>
-                                    <p>Caracter: {character}</p>
+                                <li key={id} className={styles.CastItem}>
+                                    <img className={styles.CastImg} src={`https://image.tmdb.org/t/p/w500/${profile_path}`} alt={original_name} />
+                                    <p className={styles.CastName}>Name: {original_name}</p>
+                                    <p className={styles.CastRole}>Caracter: {character}</p>
                                 </li>
                             ))
                         }

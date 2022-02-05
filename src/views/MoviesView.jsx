@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import moviesApi from '../services/movies-api';
 import Searchbar from '../components/Searchbar';
 import Loader from '../components/Loader';
 import Button from '../components/Button';
+import MoviesList from '../components/MoviesList';
+
 class MoviesView extends Component {
     state = {
         movies: [],
@@ -29,7 +30,6 @@ class MoviesView extends Component {
     };
 
     fetchMovies = () => {
-        console.log(this.state.currentPage, this.state.searchQuery);
         const { currentPage, searchQuery } = this.state;
         const options = {searchQuery, currentPage};
         
@@ -49,6 +49,7 @@ class MoviesView extends Component {
     render() {
         const {  movies, isLoading, errorMessage } = this.state;
         const shouldRenderLoadMoreButton = movies.length > 0 && !isLoading;
+    
         return (
             <div>
                 { errorMessage && <h1>Error: {errorMessage}</h1> }
@@ -56,22 +57,7 @@ class MoviesView extends Component {
                 {isLoading && (<Loader/>)}
 
                 {
-                    movies && (
-                        <ul>
-                            {
-                                movies.map((movie) => (
-                                    <li key={movie.id}>
-                                        <Link to={{
-                                            pathname: `/movies/${movie.id}`,
-                                            state: { from: this.props.location },
-                                        }}>
-                                            {movie?.title || movie?.original_title || movie?.original_name}
-                                        </Link>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    )
+                    movies.length > 0 && <MoviesList movies={movies} {...this.props}/>
                 }
 
                 {shouldRenderLoadMoreButton && (

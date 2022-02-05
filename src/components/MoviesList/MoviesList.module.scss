@@ -1,0 +1,47 @@
+.MoviesList{
+    grid-gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
+}
+.MoviesListItem{
+    max-width: 350px;
+    text-align: center;
+    padding: 10px;
+}
+.MoviesListLink{
+    transition: all 250ms linear;
+    display: block;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #3f51b5;
+    border-radius: 5px;
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+.MoviesListImg{
+    display: block;
+    width: 280px;
+    height: 400px;
+    margin: 0 auto;
+    border-radius: 5px;
+    transition: all 250ms linear;
+}
+.MoviesListTitle{
+    font-size: 20px;
+    padding: 0 10px 10px 10px;
+}
+.MoviesListVote{
+    padding: 5px;
+    border-radius: 0 5px 0 3px;
+    background-color: #3f51b5;
+    position: absolute;
+    top: 0;
+    right: -1px;
+    line-height: 1;
+}
+.Thumb{
+    padding: 10px;
+    position: relative;
+}

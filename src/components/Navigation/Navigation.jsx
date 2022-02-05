@@ -1,7 +1,7 @@
 import React from 'react';
 import routes from '../../routes';
 import { NavLink } from 'react-router-dom';
-import styles from './Navigation.modules.scss';
+import styles from './Navigation.module.scss';
 
 const Navigation = props => {
     return (
@@ -9,15 +9,15 @@ const Navigation = props => {
             <NavLink 
                 exact
                 to={routes.home}
-                activeClassName="active"
-                className="nav-link"
+                activeClassName={styles.Active}
+                className={styles.NavLink}
             >
                 Home
             </NavLink>
             <NavLink 
                 to={routes.movies}
-                activeClassName="active"
-                className="nav-link"
+                activeClassName={styles.Active}
+                className={styles.NavLink}
             >
                 Movies
             </NavLink>

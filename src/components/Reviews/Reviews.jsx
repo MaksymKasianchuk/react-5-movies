@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moviesApi from '../../services/movies-api';
+import styles from './Reviews.module.scss';
 
 class Reviews extends Component {
     state = {
@@ -19,11 +20,10 @@ class Reviews extends Component {
                 reviews.length > 0 ? (
                     <ul>
                         {
-                            reviews.map(({ id, author, author_details, content}) => (
-                                <li key={id}>
-                                    <img src={author_details?.avatar_path || ""} alt={author} />
-                                    <p>Name: {author}</p>
-                                    <p>Review: {content}</p>
+                            reviews.map(({ id, author, content}) => (
+                                <li key={id} className={styles.RreviewItem}>
+                                    <p className={styles.RreviewName}>Name: {author}</p>
+                                    <p className={styles.RreviewContent}>Review: {content}</p>
                                 </li>
                             ))
                         }
