@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'query-string'; // Пакет для query string
 import moviesApi from '../services/movies-api';
 import Searchbar from '../components/Searchbar';
 import Loader from '../components/Loader';
@@ -13,6 +14,16 @@ class MoviesView extends Component {
         isLoading: false,
         errorMessage: null,
     }
+    componentDidMount() {
+        const { search, pathname } = this.props.location;
+        const { query } = queryString.parse(search);
+    
+        if (search && pathname) {
+          this.setState({
+            searchQuery: query,
+          });
+        }
+    };
 
     componentDidUpdate( prevProps, prevState){
         if(prevState.searchQuery !== this.state.searchQuery){
@@ -21,11 +32,17 @@ class MoviesView extends Component {
     };
 
     onChangeQuery = query =>{
+        const { history } = this.props;
+
         this.setState({
             searchQuery: query,
             currentPage: 1,
             movies: [],
             errorMessage: null
+        });
+
+        history.push({
+            search: `query=${query}`,
         });
     };
 
